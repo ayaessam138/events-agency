@@ -14,22 +14,8 @@ State Management: Implemented using Cubit to ensure smooth UI interactions.
 Architecture
 The project follows Clean Architecture, ensuring a modular, scalable, and maintainable codebase.
 
-Folder Structure
-bash
-Copy
-Edit
-📦 booking_app/
- ┣ 📂 core/             # Shared resources (constants, utils, theme, etc.)
- ┣ 📂 features/         # Contains app features
- ┃ ┣ 📂 login/          # Login, Register, OTP
- ┃ ┃ ┣ 📂 domain/      # Entities & repository interfaces
- ┃ ┃ ┣ 📂 data/        # Models, repository implementation, API handling
- ┃ ┃ ┣ 📂 presentation/ # UI screens, controllers (Cubit)
- ┃ ┣ 📂 home/          # Home & Event listing
- ┃ ┣ 📂 event_details/ # Detailed event information
- ┃ ┣ 📂 organizer/     # Organizer listing and details
- ┃ ┣ 📂 onboarding/    # Onboarding screen
- ┣ 📂 main.dart        # Entry point of the app
+![Screenshot_20250819_184517](https://github.com/user-attachments/assets/c7289e77-b799-45a1-b7d3-daa0063765cd)
+
 Technologies Used
 Flutter: Frontend UI framework.
 Firebase Authentication: User login and registration.
