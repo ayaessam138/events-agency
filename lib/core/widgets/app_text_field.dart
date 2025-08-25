@@ -111,7 +111,7 @@ class AppTextField extends StatelessWidget {
           borderSide: BorderSide(
             color: isNoBorder
                 ? Colors.transparent
-                : unFocusedBorderColor ?? Theme.of(context).primaryColor,
+                : unFocusedBorderColor ?? ColorsManager.lightGreyColor,
           ),
         ),
         enabledBorder: OutlineInputBorder(
@@ -120,7 +120,7 @@ class AppTextField extends StatelessWidget {
           borderSide: BorderSide(
             color: isNoBorder
                 ? Colors.transparent
-                : unFocusedBorderColor ?? Theme.of(context).hintColor,
+                : unFocusedBorderColor ??ColorsManager.lightGreyColor,
           ),
         ),
         focusedBorder: OutlineInputBorder(

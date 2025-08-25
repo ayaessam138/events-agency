@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bookingapp/core/helpers/app_values.dart';
 import 'package:bookingapp/core/theming/colors.dart';
 import 'package:bookingapp/core/theming/styles.dart';
@@ -5,15 +6,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppButton extends StatelessWidget {
-   AppButton({super.key, required this.label, this.onTap, this.width});
+   AppButton({super.key, required this.label, this.onTap, this.width,this.height});
   final String label;
   double? width;
+  double? height;
   final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
+        height:height ,
         width: width ?? AppWidth.fullWidth(context) * .75,
         decoration: BoxDecoration(
           boxShadow: [
@@ -34,7 +37,8 @@ class AppButton extends StatelessWidget {
         child: Row(
           children: [
             Spacer(),
-            Text(
+            AutoSizeText(
+              textAlign: TextAlign.center,
               label,
               style: TextStyles.font16Regular.copyWith(
                 color: ColorsManager.white,

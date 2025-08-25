@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bookingapp/core/helpers/app_spacing.dart';
 import 'package:bookingapp/core/helpers/app_values.dart';
 import 'package:bookingapp/core/routing/app_routes.dart';
@@ -46,12 +47,12 @@ class _EventsListviewState extends State<EventsListview> {
             ? Center(child: CircularProgressIndicator())
             : state is NoInternet
             ? Center(
-              child: Text(
+              child: AutoSizeText(
                 "Check your Internet Connection Please",
                 style: TextStyles.font16Bold,
               ),
             )
-            :state is EventsError?Center(child: Text(state.error)): RefreshIndicator(
+            :state is EventsError?Center(child: AutoSizeText(state.error)): RefreshIndicator(
               onRefresh: () async {
                 await cubit.getEvents(isRefresh: true);
               },

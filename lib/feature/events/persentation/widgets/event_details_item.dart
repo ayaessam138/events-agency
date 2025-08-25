@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bookingapp/core/helpers/app_values.dart';
 
 import 'package:bookingapp/core/theming/colors.dart';
@@ -36,39 +37,48 @@ class EventDetailsItem extends StatelessWidget {
           ),
           child:
               isOrganizer
-                  ? AppCacheImage(isNotCircle: true, image: imageLink)
+                  ? SvgPicture.asset("assets/images/person.svg")
                   : SvgPicture.asset(imageLink),
         ),
-        Column(
-          children: [
-            Text(title, style: TextStyles.font16Regular),
-            Text(
-              subtitle,
-              style: TextStyles.font14Regular.copyWith(
-                color: ColorsManager.greyColor,
+        
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              AutoSizeText(
+                title,
+                style: TextStyles.font16Regular,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
-            ),
-          ],
-        ),
-        Spacer(),
-        isOrganizer
-            ? Container(
-              padding: EdgeInsets.symmetric(
-                horizontal: AppWidth.w12,
-                vertical: AppHight.h6,
-              ),
-              decoration: BoxDecoration(
-                color: ColorsManager.lightPink,
-                borderRadius: BorderRadius.circular(AppRadius.r12),
-              ),
-              child: Text(
-                "Follow",
-                style: TextStyles.font12Regular.copyWith(
-                  color: ColorsManager.mainColor,
+              AutoSizeText(
+                subtitle, 
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyles.font14Regular.copyWith(
+                  color: ColorsManager.greyColor,
                 ),
               ),
-            )
-            : SizedBox.shrink(),
+            ],
+          ),
+        ),
+        if (isOrganizer)
+          Container(
+            padding: EdgeInsets.symmetric(
+              horizontal: AppWidth.w12,
+              vertical: AppHight.h6,
+            ),
+            decoration: BoxDecoration(
+              color: ColorsManager.lightPink,
+              borderRadius: BorderRadius.circular(AppRadius.r12),
+            ),
+            child: AutoSizeText(
+              "Follow",
+              style: TextStyles.font12Regular.copyWith(
+                color: ColorsManager.mainColor,
+              ),
+            ),
+          ),
       ],
     );
   }

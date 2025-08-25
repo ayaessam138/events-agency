@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bookingapp/core/helpers/app_spacing.dart';
 import 'package:bookingapp/core/helpers/app_values.dart';
 import 'package:bookingapp/core/routing/app_routes.dart';
@@ -80,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          AutoSizeText(
                             "Upcoming Events",
                             style: TextStyles.font18Medium,
                           ),
@@ -91,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 AppRoutes.eventsScreen,
                               );
                             },
-                            child: Text(
+                            child: AutoSizeText(
                               "See All",
                               style: TextStyles.font14Regular.copyWith(
                                 color: ColorsManager.greyColor,
@@ -117,11 +118,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                 spacing: AppHight.h3,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
+                                  AutoSizeText(
                                     "Invite your friends",
                                     style: TextStyles.font18Medium,
                                   ),
-                                  Text(
+                                  AutoSizeText(
                                     "Get 20 for ticket",
                                     style: TextStyles.font14Regular.copyWith(
                                       color: ColorsManager.purple,
@@ -139,7 +140,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         AppRadius.r12,
                                       ),
                                     ),
-                                    child: Text(
+                                    child: AutoSizeText(
                                       "Invite",
                                       style: TextStyles.font12Regular.copyWith(
                                         color: ColorsManager.white,

@@ -9,6 +9,7 @@ import 'package:bookingapp/core/widgets/app_text_field.dart';
 import 'package:bookingapp/feature/register/domain/entity/register_entity.dart';
 import 'package:bookingapp/feature/register/persentation/controller/register_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -24,120 +25,126 @@ class RegisterTextfields extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<RegisterCubit, RegisterState>(
       builder: (context, state) {
-        return Form(
-          key: _formKey,
-          child: Column(
-            spacing: AppHight.h20,
-            children: [
-              AppTextField(
-                controller: name,
-                hintText: "Full Name",
-                borderRadius: BorderRadius.circular(AppRadius.r10),
-                unFocusedBorderColor: ColorsManager.greyColor,
-                focusedBorderColor: ColorsManager.greyColor,
-                contentPadding: EdgeInsets.all(AppPadding.p10),
-                isDense: true,
-                prefixIcon: Padding(
-                  padding: EdgeInsets.all(AppPadding.p16),
-                  child: SizedBox(
-                    height: 20.h,
-                    width: 20.w,
-                    child: SvgPicture.asset(AppImages.email, fit: BoxFit.fill),
+        return LayoutBuilder(
+          builder: (context,constraints) {
+            return Form(
+              key: _formKey,
+              child: Column(
+                spacing: AppHight.h10,
+                children: [
+                  AppTextField(
+                    controller: name,
+                    hintText: "Full Name",
+                    borderRadius: BorderRadius.circular(AppRadius.r10),
+                    unFocusedBorderColor: ColorsManager.greyColor,
+                    focusedBorderColor: ColorsManager.greyColor,
+                    contentPadding: EdgeInsets.all(AppPadding.p10),
+                    isDense: true,
+                    prefixIcon: Padding(
+                      padding: EdgeInsets.all(AppPadding.p16),
+                      child: SizedBox(
+                        height: 20.h,
+                        width: 20.w,
+                        child: SvgPicture.asset(AppImages.email, fit: BoxFit.fill),
+                      ),
+                    ),
+                    validator: (String? val) {
+                      return AppHeleperFunctions.validateFullName(val);
+                    },
                   ),
-                ),
-                validator: (String? val) {
-                  return AppHeleperFunctions.validateFullName(val);
-                },
-              ),
-              AppTextField(
-                controller: email,
-                hintText: "abc@email.com",
-                borderRadius: BorderRadius.circular(AppRadius.r10),
-                unFocusedBorderColor: ColorsManager.greyColor,
-                focusedBorderColor: ColorsManager.greyColor,
-                contentPadding: EdgeInsets.all(AppPadding.p10),
-                isDense: true,
-                prefixIcon: Padding(
-                  padding: EdgeInsets.all(AppPadding.p16),
-                  child: SizedBox(
-                    height: 20.h,
-                    width: 20.w,
-                    child: SvgPicture.asset(
-                      AppImages.envleop,
-                      fit: BoxFit.fill,
+                  AppTextField(
+                    controller: email,
+                    hintText: "abc@email.com",
+                    borderRadius: BorderRadius.circular(AppRadius.r10),
+                    unFocusedBorderColor: ColorsManager.greyColor,
+                    focusedBorderColor: ColorsManager.greyColor,
+                    contentPadding: EdgeInsets.all(AppPadding.p10),
+                    isDense: true,
+                    prefixIcon: Padding(
+                      padding: EdgeInsets.all(AppPadding.p16),
+                      child: SizedBox(
+                        height: 20.h,
+                        width: 20.w,
+                        child: SvgPicture.asset(
+                          AppImages.envleop,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ),
+                    validator: (String? val) {
+                      return AppHeleperFunctions.validateEmail(val);
+                    },
+                  ),
+                  AppTextField(
+                    controller: password,
+                    suffixIcon: Icon(Icons.remove_red_eye_outlined, size: 16.sp),
+                    suffixIconColor: ColorsManager.greyDarkColor,
+                    hintText: "Password",
+                    borderRadius: BorderRadius.circular(AppRadius.r10),
+                    unFocusedBorderColor: ColorsManager.greyColor,
+                    focusedBorderColor: ColorsManager.greyColor,
+                    contentPadding: EdgeInsets.all(AppPadding.p10),
+                    isDense: true,
+                    prefixIcon: Padding(
+                      padding: EdgeInsets.all(AppPadding.p16),
+                      child: SizedBox(
+                        height: 24.h,
+                        width: 24.w,
+                        child: SvgPicture.asset(AppImages.lock, fit: BoxFit.fill),
+                      ),
+                    ),
+                    validator: (String? val) {
+                      return AppHeleperFunctions.validatePassword(val);
+                    },
+                  ),
+                  AppTextField(
+                    controller: confirmPassword,
+                    suffixIcon: Icon(Icons.remove_red_eye_outlined, size: 16.sp),
+                    suffixIconColor: ColorsManager.greyDarkColor,
+                    hintText: "Confirm Password",
+                    borderRadius: BorderRadius.circular(AppRadius.r10),
+                    unFocusedBorderColor: ColorsManager.greyColor,
+                    focusedBorderColor: ColorsManager.greyColor,
+                    contentPadding: EdgeInsets.all(AppPadding.p10),
+                    isDense: true,
+                    prefixIcon: Padding(
+                      padding: EdgeInsets.all(AppPadding.p16),
+                      child: SizedBox(
+                        height: 24.h,
+                        width: 24.w,
+                        child: SvgPicture.asset(AppImages.lock, fit: BoxFit.fill),
+                      ),
+                    ),
+                    validator: (String? val) {
+                      return AppHeleperFunctions.validateConfirmPassword(
+                        val,
+                        confirmPassword.text,
+                      );
+                    },
+                  ),
+                  Center(
+                    child: AppButton(
+                      height: 50.h,
+                      label: "SignUp",
+                      onTap: () {
+                           AppNavigator.push(context, AppRoutes.otpScrren);
+                        // RegisterParamsEntity registerEntity = RegisterParamsEntity(
+                        //   email: email.text,
+                        //   name: name.text,
+                        //   password: password.text,
+                        // );
+                        // if (_formKey.currentState!.validate()) {
+                        //   RegisterCubit.of(
+                        //     context,
+                        //   ).getRegisterDeatils(registerEntity: registerEntity);
+                        // }
+                      },
                     ),
                   ),
-                ),
-                validator: (String? val) {
-                  return AppHeleperFunctions.validateEmail(val);
-                },
+                ],
               ),
-              AppTextField(
-                controller: password,
-                suffixIcon: Icon(Icons.remove_red_eye_outlined, size: 16.sp),
-                suffixIconColor: ColorsManager.greyDarkColor,
-                hintText: "Password",
-                borderRadius: BorderRadius.circular(AppRadius.r10),
-                unFocusedBorderColor: ColorsManager.greyColor,
-                focusedBorderColor: ColorsManager.greyColor,
-                contentPadding: EdgeInsets.all(AppPadding.p10),
-                isDense: true,
-                prefixIcon: Padding(
-                  padding: EdgeInsets.all(AppPadding.p16),
-                  child: SizedBox(
-                    height: 24.h,
-                    width: 24.w,
-                    child: SvgPicture.asset(AppImages.lock, fit: BoxFit.fill),
-                  ),
-                ),
-                validator: (String? val) {
-                  return AppHeleperFunctions.validatePassword(val);
-                },
-              ),
-              AppTextField(
-                controller: confirmPassword,
-                suffixIcon: Icon(Icons.remove_red_eye_outlined, size: 16.sp),
-                suffixIconColor: ColorsManager.greyDarkColor,
-                hintText: "Confirm Password",
-                borderRadius: BorderRadius.circular(AppRadius.r10),
-                unFocusedBorderColor: ColorsManager.greyColor,
-                focusedBorderColor: ColorsManager.greyColor,
-                contentPadding: EdgeInsets.all(AppPadding.p10),
-                isDense: true,
-                prefixIcon: Padding(
-                  padding: EdgeInsets.all(AppPadding.p16),
-                  child: SizedBox(
-                    height: 24.h,
-                    width: 24.w,
-                    child: SvgPicture.asset(AppImages.lock, fit: BoxFit.fill),
-                  ),
-                ),
-                validator: (String? val) {
-                  return AppHeleperFunctions.validateConfirmPassword(
-                    val,
-                    confirmPassword.text,
-                  );
-                },
-              ),
-              Center(
-                child: AppButton(
-                  label: "SignUp",
-                  onTap: () {
-                    RegisterParamsEntity registerEntity = RegisterParamsEntity(
-                      email: email.text,
-                      name: name.text,
-                      password: password.text,
-                    );
-                    if (_formKey.currentState!.validate()) {
-                      RegisterCubit.of(
-                        context,
-                      ).getRegisterDeatils(registerEntity: registerEntity);
-                    }
-                  },
-                ),
-              ),
-            ],
-          ),
+            );
+          }
         );
       },
       listenWhen:

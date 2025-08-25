@@ -1,6 +1,7 @@
 import 'package:bookingapp/core/helpers/dependency_injection.dart';
 import 'package:bookingapp/feature/events/persentation/screens/saved_events_screen.dart';
 import 'package:bookingapp/feature/home/persentation/screens/home_screen.dart';
+import 'package:bookingapp/feature/profile/persentation/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart' show Cubit;
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -21,7 +22,7 @@ class BottomNavBarCubit extends Cubit<BottomNavBarState> {
      HomeScreen(),
     const SavedEventsScreen(),
     Container(),
-    Container(),
+    ProfileScreen(),
   ];
 
   int currentIndex = 0;

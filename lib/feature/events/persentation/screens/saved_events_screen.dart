@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bookingapp/core/helpers/app_const.dart';
 import 'package:bookingapp/core/helpers/app_spacing.dart';
 import 'package:bookingapp/core/helpers/app_values.dart';
@@ -30,7 +31,7 @@ class _SavedEventsScreenState extends State<SavedEventsScreen> {
     var savedEvents = bookmarkedBox.values.toList();
 
     return Scaffold(
-      body:SafeArea(
+      body: SafeArea(
         child: Padding(
           padding: EdgeInsets.all(AppPadding.p16),
           child: Column(
@@ -54,7 +55,19 @@ class _SavedEventsScreenState extends State<SavedEventsScreen> {
                           color: ColorsManager.black,
                         ),
                       ),
-                      Text("Events", style: TextStyles.font24Regular),
+                      ConstrainedBox(
+                        constraints: BoxConstraints(
+                          maxWidth:
+                              AppWidth.fullWidth(context) *
+                              0.5, 
+                        ),
+                        child: AutoSizeText(
+                          "Saved Events",
+                          style: TextStyles.font24Regular,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
                     ],
                   ),
                   Spacer(),
@@ -81,30 +94,36 @@ class _SavedEventsScreenState extends State<SavedEventsScreen> {
                 ],
               ),
               AppSpace.vertical(AppHight.h12),
-              Expanded(child:savedEvents.isEmpty
-              ? Center(child: Text("No saved events"))
-              : ListView.separated(
-                shrinkWrap: true,
-                itemCount: savedEvents.length,
-                itemBuilder: (context, index) {
-                  final event = savedEvents[index];
-                  return EventsListviewCard(eventsEntity: event, onTap: (){
-              
-                     AppNavigator.pushNamed(
-                      context,
-                      AppRoutes.eventsDeatilsScreen,
-                      params: {
-                        "id": event.eventId.toString(),
-                      },
-                    );
-                  });
-                }, separatorBuilder: (BuildContext context, int index) { return AppSpace.vertical(AppHight.h12); },
-              ),),
+              Expanded(
+                child:
+                    savedEvents.isEmpty
+                        ? Center(child: Text("No saved events"))
+                        : ListView.separated(
+                          shrinkWrap: true,
+                          itemCount: savedEvents.length,
+                          itemBuilder: (context, index) {
+                            final event = savedEvents[index];
+                            return EventsListviewCard(
+                              eventsEntity: event,
+                              onTap: () {
+                                AppNavigator.pushNamed(
+                                  context,
+                                  AppRoutes.eventsDeatilsScreen,
+                                 
+                                 params: {"id": event.eventId.toString()},
+                                );
+                              },
+                            );
+                          },
+                          separatorBuilder: (BuildContext context, int index) {
+                            return AppSpace.vertical(AppHight.h12);
+                          },
+                        ),
+              ),
             ],
           ),
         ),
       ),
-          
     );
   }
 }

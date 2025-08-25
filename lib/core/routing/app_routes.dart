@@ -6,11 +6,13 @@ class AppRoutes {
   static const String onBoradingScreen = '/onBoradingScreen';
   static const String loginScreen = '/loginScreen';
   static const String registerScreen = '/registerScreen';
+   static const String otpScrren = '/otpScrren';
   static const String homeScreen = '/homeScreen';
   static const String eventsScreen = '/eventsScreen';
   static const String eventsDeatilsScreen = '/eventsDeatilsScreen';
   static const String organizerScreen = '/organizerScreen';
-  static const String otpScrren = '/otpScrren';
+  static const String editProfileScreen = '/editProfileScreen';
+ 
   static const String bottomNavBarScreen = '/bottomNavBarScreen';
 }
 

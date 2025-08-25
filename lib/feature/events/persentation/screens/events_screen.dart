@@ -1,4 +1,4 @@
-
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bookingapp/core/helpers/app_spacing.dart';
 import 'package:bookingapp/core/helpers/app_values.dart';
 import 'package:bookingapp/core/theming/colors.dart';
@@ -38,7 +38,19 @@ class EventsScreen extends StatelessWidget {
                           color: ColorsManager.black,
                         ),
                       ),
-                      Text("Events", style: TextStyles.font24Regular),
+                      ConstrainedBox(
+                        constraints: BoxConstraints(
+                          maxWidth:
+                              AppWidth.fullWidth(context) *
+                              0.5, // 50% of screen width
+                        ),
+                        child: AutoSizeText(
+                          " Events",
+                          style: TextStyles.font24Regular,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
                     ],
                   ),
                   Spacer(),

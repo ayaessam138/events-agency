@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bookingapp/core/routing/app_routes.dart';
 import 'package:bookingapp/core/theming/app_images.dart';
 import 'package:bookingapp/core/helpers/app_values.dart';
@@ -14,72 +15,72 @@ class RegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+ 
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Stack(
-                children: [
-                  Positioned.fill(
-                    child: Image.asset(AppImages.background, fit: BoxFit.cover),
-                  ),
-
-                  Padding(
-                    padding: EdgeInsets.all(12.sp),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      spacing: AppHight.h15,
-                      children: [
-                        IconButton(
-                          icon: Icon(Icons.arrow_back_sharp, size: 24.sp),
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                        ),
-                        Text("SignUp", style: TextStyles.font24Medium),
-                        RegisterTextfields(),
-                 
-                        LoginOptions(
-                          image: AppImages.google,
-                          label: "Login With Google",
-                        ),
-                        LoginOptions(
-                          image: AppImages.facebook,
-                          label: "Login With FaceBook",
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          spacing: AppWidth.w2,
-                          children: [
-                            Text(
-                              "Already have an account? ",
-                              style: TextStyles.font16Regular.copyWith(
-                                color: ColorsManager.black,
-                              ),
+        child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: EdgeInsets.all(12.sp),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    spacing: AppHight.h10,
+                    children: [
+                      GestureDetector(
+                        child: Icon(Icons.arrow_back_sharp, size: 24.sp),
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                      ),
+                      AutoSizeText("SignUp", style: TextStyles.font24Medium),
+                      RegisterTextfields(),
+                      LoginOptions(
+                        height: 50.h,
+                        image: AppImages.google,
+                        label: "Login With Google",
+                      ),
+                      LoginOptions(
+                        height: 50.h,
+                        image: AppImages.facebook,
+                        label: "Login With FaceBook",
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        spacing: AppWidth.w2,
+                        children: [
+                          AutoSizeText(
+                            maxLines: 1,
+                            "Already have an account?",
+                            style: TextStyles.font16Regular.copyWith(
+                              color: ColorsManager.black,
                             ),
-                            GestureDetector(
+                          ),
+                          Flexible(
+                            child: GestureDetector(
                               onTap: () {
                                 AppNavigator.push(
                                   context,
                                   AppRoutes.loginScreen,
                                 );
                               },
-                              child: Text(
-                                "SignIn",
+                              child: AutoSizeText(
+                                maxLines: 1,
+                                " Sign in",
                                 style: TextStyles.font16Regular.copyWith(
                                   color: ColorsManager.mainColor,
                                 ),
                               ),
                             ),
-                          ],
-                        ),
-                      ],
-                    ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

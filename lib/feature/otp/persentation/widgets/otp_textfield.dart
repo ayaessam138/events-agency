@@ -22,7 +22,7 @@ class _OtpTextfieldState extends State<OtpTextfield> {
         OtpTextField(
           borderRadius: BorderRadius.circular(AppRadius.r12),
           fieldWidth: AppWidth.w55,
-          fieldHeight: AppHight.h130,
+          fieldHeight: AppHight.fullHight(context)* 0.2,
           numberOfFields: 4,
           focusedBorderColor: ColorsManager.mainColor,
           borderColor: ColorsManager.greyColor,

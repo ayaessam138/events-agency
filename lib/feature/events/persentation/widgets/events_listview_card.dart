@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bookingapp/core/helpers/app_values.dart';
 import 'package:bookingapp/core/helpers/functions.dart';
 import 'package:bookingapp/core/theming/app_images.dart';
@@ -30,12 +31,12 @@ class EventsListviewCard extends StatelessWidget {
             height: AppHight.fullHight(context) * .15,
             width: AppWidth.fullWidth(context) * .35,
           ),
-
           Expanded(
             child: Column(
+              spacing: AppHight.h6,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                AutoSizeText(
                   maxLines: 1,
                   softWrap: true,
                   overflow: TextOverflow.ellipsis,
@@ -44,7 +45,7 @@ class EventsListviewCard extends StatelessWidget {
                     color: ColorsManager.mainColor,
                   ),
                 ),
-                Text(
+                AutoSizeText(
                   maxLines: 1,
                   softWrap: true,
                   overflow: TextOverflow.ellipsis,
@@ -54,10 +55,11 @@ class EventsListviewCard extends StatelessWidget {
                   ),
                 ),
                 Row(
+                  spacing: AppWidth.w6,
                   children: [
                     SvgPicture.asset(AppImages.location),
                     Expanded(
-                      child: Text(
+                      child: AutoSizeText(
                         maxLines: 1,
                         softWrap: true,
                         overflow: TextOverflow.ellipsis,

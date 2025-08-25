@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bookingapp/core/helpers/app_spacing.dart';
 import 'package:bookingapp/core/helpers/app_values.dart';
 import 'package:bookingapp/core/helpers/functions.dart';
@@ -8,15 +9,16 @@ import 'package:bookingapp/feature/organizer/domain/entity/organizer_entity.dart
 import 'package:flutter/material.dart';
 
 class OrganizerEventsTab extends StatelessWidget {
-  const OrganizerEventsTab({super.key, required this.organizerEntity});
-  final OrganizerEntity organizerEntity;
+     const OrganizerEventsTab({super.key, required this.organizerEntity});
+
+    final OrganizerEntity organizerEntity;
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
       padding: EdgeInsets.all(AppPadding.p16),
       itemBuilder: (context, index) {
         return Container(
-          padding: EdgeInsets.all(AppPadding.p16),
+          padding: EdgeInsets.all(AppPadding.p12),
           decoration: BoxDecoration(
             color: ColorsManager.white,
             borderRadius: BorderRadius.circular(AppRadius.r14),
@@ -33,12 +35,10 @@ class OrganizerEventsTab extends StatelessWidget {
           child: Row(
             spacing: AppWidth.w20,
             children: [
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: AppHight.h12),
-                child: AppCacheImage(image: 
-                   organizerEntity.events![index].picture??'',
-            
-                  )
+              Image.asset(
+                "assets/images/event.png",
+                fit: BoxFit.cover,
+                width: AppWidth.fullWidth(context)*.47,
               ),
               Expanded(
                 flex: 3,
@@ -47,22 +47,26 @@ class OrganizerEventsTab extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                     AutoSizeText(
                         maxLines: 1,
-                        softWrap: true,
+                      
                         overflow: TextOverflow.ellipsis,
-                        AppHeleperFunctions.formatEventDate(
-                          organizerEntity.events![index].date ?? '',
-                        ),
+                       
+                          AppHeleperFunctions.formatEventDate(
+                            organizerEntity.events![index].date ?? '',
+                          ),
                         style: TextStyles.font12Regular.copyWith(
                           color: ColorsManager.mainColor,
                         ),
                       ),
-                      Text(
-                        maxLines: 2,
+                     AutoSizeText(
+                        maxLines: 3,
                         softWrap: true,
                         overflow: TextOverflow.ellipsis,
-                        organizerEntity.events![index].title ?? '',
+
+                       
+                          organizerEntity.events![index].title ?? '',
+                        
                         style: TextStyles.font18Regular.copyWith(
                           color: ColorsManager.black,
                         ),
@@ -78,7 +82,8 @@ class OrganizerEventsTab extends StatelessWidget {
       separatorBuilder: (context, index) {
         return AppSpace.vertical(AppHight.h12);
       },
-      itemCount: organizerEntity.events?.length ?? 0,
+       itemCount: organizerEntity.events?.length ?? 0,
+
     );
   }
 }

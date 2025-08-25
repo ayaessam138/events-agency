@@ -5,7 +5,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 class AppCacheImage extends StatelessWidget {
   final String image;
   final String? defaultImage;
@@ -14,9 +13,9 @@ class AppCacheImage extends StatelessWidget {
   final bool isNotCircle;
   final BoxFit? boxFit;
   final BoxFit? placeholderFit;
-
   final Color? backgroundColor;
   final BorderRadiusGeometry? borderRadius;
+
   const AppCacheImage({
     super.key,
     required this.image,

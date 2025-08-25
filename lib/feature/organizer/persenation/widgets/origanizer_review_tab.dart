@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bookingapp/core/helpers/app_spacing.dart';
 import 'package:bookingapp/core/helpers/app_values.dart';
 import 'package:bookingapp/core/helpers/functions.dart';
@@ -8,8 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class OriganizerReviewTab extends StatelessWidget {
-  const OriganizerReviewTab({super.key, required this.organizerEntity});
-  final OrganizerEntity organizerEntity;
+ 
+   const OriganizerReviewTab({super.key, required this.organizerEntity});
+     final OrganizerEntity organizerEntity;
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
@@ -20,27 +22,32 @@ class OriganizerReviewTab extends StatelessWidget {
           spacing: AppWidth.w10,
           children: [
             CircleAvatar(
-              backgroundImage: NetworkImage(
-                organizerEntity.reviews![index].reviewerPicture ?? '',
-              ),
+              maxRadius: AppRadius.r20,
+              backgroundImage: NetworkImage("assets/images/event.png"),
             ),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        organizerEntity.reviews![index].reviewerName ?? '',
-                        style: TextStyles.font18Medium,
-                      ),
-                      Spacer(),
                       Flexible(
-                        child: Text(
-                          AppHeleperFunctions.formatEventDate(
-                            organizerEntity.reviews![index].reviewDate ?? '',
-                            format: 'd MMMM',
-                          ),
+                        child: AutoSizeText(
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                            organizerEntity.reviews![index].reviewerName ?? '',
+                      
+                          style: TextStyles.font18Medium,
+                        ),
+                      ),
+                      Flexible(
+                        child: AutoSizeText(
+                            AppHeleperFunctions.formatEventDate(
+                              organizerEntity.reviews![index].reviewDate ?? '',
+                              format: 'd MMMM',
+                            ),
+                    
                           style: TextStyles.font16Regular.copyWith(
                             color: ColorsManager.greyColor,
                           ),
@@ -54,7 +61,8 @@ class OriganizerReviewTab extends StatelessWidget {
                   RatingBar.builder(
                     ignoreGestures: true,
                     initialRating:
-                        organizerEntity.reviews![index].rate!.toDouble(),
+                          organizerEntity.reviews![index].rate!.toDouble(),
+                     
                     minRating: 1,
                     direction: Axis.horizontal,
                     allowHalfRating: true,
@@ -67,8 +75,9 @@ class OriganizerReviewTab extends StatelessWidget {
                       print(rating);
                     },
                   ),
-                  Text(
-                    organizerEntity.reviews![index].review ?? '',
+                  AutoSizeText(
+                      organizerEntity.reviews![index].review ?? '',
+                 
                     style: TextStyles.font16Regular.copyWith(
                       color: ColorsManager.black,
                     ),
@@ -82,7 +91,8 @@ class OriganizerReviewTab extends StatelessWidget {
       separatorBuilder: (context, index) {
         return AppSpace.vertical(AppHight.h15);
       },
-      itemCount: organizerEntity.reviews?.length ?? 0,
+       itemCount: organizerEntity.reviews?.length ?? 0,
+
     );
   }
 }

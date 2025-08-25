@@ -4,6 +4,7 @@ import 'package:bookingapp/core/helpers/dependency_injection.dart';
 import 'package:bookingapp/core/localstorage/app_local_storage.dart';
 import 'package:bookingapp/core/routing/app_router.dart';
 import 'package:bookingapp/core/theming/colors.dart';
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,7 +15,7 @@ void main() async {
   await AppHiveLocalStorage.init();
 
   Bloc.observer = AppBlocObserver();
-  runApp(const MyApp());
+  runApp(DevicePreview(enabled: true, builder: (context) => const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(360, 690),
+    useInheritedMediaQuery: true,
       minTextAdapt: true,
       splitScreenMode: true,
       child: MultiBlocProvider(

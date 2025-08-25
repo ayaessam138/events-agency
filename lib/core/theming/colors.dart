@@ -15,11 +15,8 @@ class ColorsManager {
   static const Color lightPink = Color(0xfffff6f2);
   static const Color purple = Color(0xff484D70);
 
-  
+  static const Color lightGreyColor = Color(0xffB3B3B3);
   static const Color greyDarkColor = Color(0xff707070);
-
-
-
 
   // static const Color redColor = Color(0xffDD2C00);
   static const Color greenColor = Color(0xff0BDA51);
@@ -28,7 +25,6 @@ class ColorsManager {
   static const Color blue = Color(0xff007DFC);
   static const Color lightBlue = Color(0xff7FAAD0);
   // static const Color orange = Color(0xffF87146);
-
 
   static const Color lightGreen = Color(0xff09CA67);
   static const Color yellowLight = Color(0xffFFF4D4);
@@ -42,5 +38,4 @@ class ColorsManager {
 
   static const Color whiteColor = Color(0xffffffff);
   static const Color blackColor = Color(0xff000000);
-
 }

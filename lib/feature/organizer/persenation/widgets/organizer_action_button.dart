@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bookingapp/core/helpers/app_values.dart';
 import 'package:bookingapp/core/theming/styles.dart';
 import 'package:flutter/material.dart';
@@ -28,12 +29,16 @@ class OrganizerActionButton extends StatelessWidget {
         border: Border.all(color: borderColor),
       ),
       child: Row(
-        spacing: AppWidth.w14,
+        spacing: AppWidth.w10,
         children: [
-          SvgPicture.asset(image),
-          Text(
-            buttonLabel,
-            style: TextStyles.font16Regular.copyWith(color: textColor),
+          Flexible(child: SvgPicture.asset(image)),
+          Expanded(
+            flex: 3,
+            child: AutoSizeText(
+              maxLines: 1,
+              buttonLabel,
+              style: TextStyles.font16Regular.copyWith(color: textColor),
+            ),
           ),
         ],
       ),

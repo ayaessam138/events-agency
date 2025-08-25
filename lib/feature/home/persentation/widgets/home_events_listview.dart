@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bookingapp/core/helpers/app_const.dart';
 import 'package:bookingapp/core/helpers/app_spacing.dart';
 import 'package:bookingapp/core/helpers/app_values.dart';
@@ -74,14 +75,14 @@ class _HomeEventsListState extends State<HomeEventsList> {
         if (state is EventsError) {
           return SizedBox(
             height: AppHight.fullHight(context) * .35,
-            child: Center(child: Text(state.error)),
+            child: Center(child: AutoSizeText(state.error)),
           );
         }
         if (state is NoInternet) {
           return SizedBox(
             height: AppHight.fullHight(context) * .35,
             child: Center(
-              child: Text('check Intenet connection and try again'),
+              child: AutoSizeText('check Intenet connection and try again'),
             ),
           );
         } else {
@@ -129,11 +130,11 @@ class _HomeEventsListState extends State<HomeEventsList> {
                         children: [
                           Stack(
                             children: [
-                              AppCacheImage(
+                              Image.asset(
+                                fit: BoxFit.cover,
                                 width: AppWidth.fullWidth(context),
                                 height: AppHight.fullHight(context) * .2,
-                                image: eventsList[index].picture,
-                                isNotCircle: true,
+                                "assets/images/event.png",
                               ),
 
                               Padding(
@@ -155,26 +156,54 @@ class _HomeEventsListState extends State<HomeEventsList> {
                                       child: Row(
                                         children: [
                                           Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
                                             children: [
-                                              Text(
-                                                AppHeleperFunctions.formatEventDate(
-                                                  eventsList[index].date,
-                                                  format: 'd MMMM',
-                                                ).split(" ")[0],
-                                                style: TextStyles.font18Bold
-                                                    .copyWith(
-                                                      color: ColorsManager.pink,
-                                                    ),
+                                              ConstrainedBox(
+                                                constraints: BoxConstraints(
+                                                  maxWidth:
+                                                      AppWidth.fullWidth(
+                                                        context,
+                                                      ) *
+                                                      0.25,
+                                                ),
+                                                child: AutoSizeText(
+                                                  maxLines: 1,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+
+                                                  AppHeleperFunctions.formatEventDate(
+                                                    eventsList[index].date,
+                                                    format: 'd MMMM',
+                                                  ).split(" ")[0],
+                                                  style: TextStyles.font18Bold
+                                                      .copyWith(
+                                                        color:
+                                                            ColorsManager.pink,
+                                                      ),
+                                                ),
                                               ),
-                                              Text(
-                                                AppHeleperFunctions.formatEventDate(
-                                                  eventsList[index].date,
-                                                  format: 'd MMMM',
-                                                ).split(" ")[1],
-                                                style: TextStyles.font18Bold
-                                                    .copyWith(
-                                                      color: ColorsManager.pink,
-                                                    ),
+                                              ConstrainedBox(
+                                                constraints: BoxConstraints(
+                                                  maxWidth:
+                                                      AppWidth.fullWidth(
+                                                        context,
+                                                      ) *
+                                                      0.25,
+                                                ),
+                                                child: AutoSizeText(
+                                                  maxLines: 1,
+
+                                                  AppHeleperFunctions.formatEventDate(
+                                                    eventsList[index].date,
+                                                    format: 'd MMMM',
+                                                  ).split(" ")[1],
+                                                  style: TextStyles.font18Bold
+                                                      .copyWith(
+                                                        color:
+                                                            ColorsManager.pink,
+                                                      ),
+                                                ),
                                               ),
                                             ],
                                           ),
@@ -212,7 +241,7 @@ class _HomeEventsListState extends State<HomeEventsList> {
                             ],
                           ),
                           AppSpace.vertical(AppHight.h6),
-                          Text(
+                          AutoSizeText(
                             eventsList[index].title,
                             style: TextStyles.font18Medium.copyWith(
                               color: ColorsManager.black,
@@ -243,10 +272,15 @@ class _HomeEventsListState extends State<HomeEventsList> {
                                   ),
                                 ),
                               ),
-                              Text(
-                                '${eventsList[index].numberOfGoing} Going',
-                                style: TextStyles.font12Medium.copyWith(
-                                  color: ColorsManager.mainColor,
+                              Flexible(
+                                child: AutoSizeText(
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  '${eventsList[index].numberOfGoing} Going',
+
+                                  style: TextStyles.font12Medium.copyWith(
+                                    color: ColorsManager.mainColor,
+                                  ),
                                 ),
                               ),
                             ],
@@ -255,9 +289,10 @@ class _HomeEventsListState extends State<HomeEventsList> {
                             spacing: AppWidth.w10,
                             children: [
                               SvgPicture.asset(AppImages.location),
-                              Expanded(
-                                child: Text(
+                              Flexible(
+                                child: AutoSizeText(
                                   eventsList[index].address,
+
                                   style: TextStyles.font14Regular.copyWith(
                                     color: ColorsManager.greyColor,
                                   ),

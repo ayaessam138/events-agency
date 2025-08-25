@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bookingapp/core/helpers/app_values.dart';
 import 'package:bookingapp/core/routing/app_routes.dart';
 import 'package:bookingapp/core/theming/app_images.dart';
@@ -21,8 +22,7 @@ class _LoginTextFieldsState extends State<LoginTextFields> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   bool isSwitched = true;
-  bool _isObscure = true; 
-
+  bool _isObscure = true;
 
   final String staticEmail = "test@gmail.com";
   final String staticPassword = "123456";
@@ -76,11 +76,11 @@ class _LoginTextFieldsState extends State<LoginTextFields> {
 
           AppTextField(
             controller: passwordController,
-            obscureText: _isObscure, 
+            obscureText: _isObscure,
             suffixIcon: IconButton(
               onPressed: () {
                 setState(() {
-                  _isObscure = !_isObscure; 
+                  _isObscure = !_isObscure;
                 });
               },
               icon: Icon(
@@ -113,26 +113,44 @@ class _LoginTextFieldsState extends State<LoginTextFields> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                children: [
-                  Switch(
-                    value: isSwitched,
-                    onChanged: (value) {
-                      setState(() {
-                        isSwitched = value;
-                      });
-                    },
-                    activeColor: ColorsManager.white,
-                    activeTrackColor: ColorsManager.mainColor,
-                    inactiveTrackColor: ColorsManager.greyColor,
-                  ),
-                  Text("Remember Me", style: TextStyles.font14Regular),
-                ],
+              Expanded(
+                child: Row(
+                  children: [
+                    Switch(
+                      value: isSwitched,
+                      onChanged: (value) {
+                        setState(() {
+                          isSwitched = value;
+                        });
+                      },
+                      activeColor: ColorsManager.white,
+                      activeTrackColor: ColorsManager.mainColor,
+                      inactiveTrackColor: ColorsManager.greyColor,
+                    ),
+                    Flexible(
+                      child: AutoSizeText(
+                        "Remember Me",
+                        style: TextStyles.font14Regular,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              Text("Forgot Password?", style: TextStyles.font14Regular),
+              Flexible(
+                child: AutoSizeText(
+                  "Forgot Password?",
+                  style: TextStyles.font14Regular,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
             ],
           ),
-          Center(child: AppButton(label: 'Sign In', onTap: _login)),
+          Center(
+            child: AppButton(label: 'Sign In', onTap: _login,height: 50.h,),
+          ),
         ],
       ),
     );
