@@ -1,5 +1,9 @@
+import 'package:bookingapp/api/events/persentation/screens/saved_events_screen.dart';
 import 'package:bookingapp/core/helpers/app_const.dart';
-import 'package:bookingapp/feature/events/domain/entity/events_entity.dart';
+import 'package:bookingapp/api/events/domain/entity/events_entity.dart';
+import 'package:bookingapp/core/helpers/dependency_injection.dart';
+import 'package:bookingapp/firebase/events/data/model/firebase_events_model.dart';
+import 'package:bookingapp/firebase/profile/data/models/firebase_profile_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class AppHiveLocalStorage {
@@ -9,10 +13,26 @@ class AppHiveLocalStorage {
     await Hive.openBox(AppSavedKey.globalBox);
     //cashing intialroute
     await Hive.openBox(AppSavedKey.intialRoute);
-    // cash saved events
+    await Hive.openBox(AppSavedKey.userLOgin);
+
+    await Hive.openBox<EventsEntity>(AppSavedKey.savedEvents);
+
     Hive.registerAdapter(EventsEntityAdapter());
     Hive.registerAdapter(OrganizerEntityAdapter());
-    await Hive.openBox<EventsEntity>(AppSavedKey.savedEvents);
+    Hive.registerAdapter(FirebaseProfileModelAdapter());
+    Hive.registerAdapter(FirebaseEventsModelAdapter());
+    Hive.registerAdapter(FirebaseOrganizerModelAdapter());
+    Hive.registerAdapter(FirebaseReviewsModelAdapter());
+    //
+    final profileBox = await Hive.openBox<FirebaseProfileModel>(
+      AppSavedKey.profile,
+    );
+    getIt.registerLazySingleton<Box<FirebaseProfileModel>>(() => profileBox);
+    //
+    final savedEvents = await Hive.openBox<FirebaseEventsModel>(
+      AppSavedKey.firebasesavedEvents,
+    );
+    getIt.registerLazySingleton<Box<FirebaseEventsModel>>(() => savedEvents);
   }
 
   static Future<void> clear(Box box) async {
@@ -25,7 +45,7 @@ class AppHiveLocalStorage {
     await box.put(key, value);
   }
 
-  static bool getBool(String key,Box box) {
+  static bool getBool(String key, Box box) {
     var value = box.get(key);
     return value is bool ? value : false;
   }

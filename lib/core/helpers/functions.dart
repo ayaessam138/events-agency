@@ -79,11 +79,18 @@ class AppHeleperFunctions {
   }
 
   static String getinialRoutes() {
-    var route = AppHiveLocalStorage.getBool(AppSavedKey.onBorading,Hive.box(AppSavedKey.intialRoute));
-    if (route) {
-      print("route");
-      print(route);
-      return AppRoutes.loginScreen;
+    var savedOnBorading = AppHiveLocalStorage.getBool(
+      AppSavedKey.onBorading,
+      Hive.box(AppSavedKey.intialRoute),
+    );
+    var savedUserLogin = AppHiveLocalStorage.getBool(
+      AppSavedKey.userLOgin,
+      Hive.box(AppSavedKey.userLOgin),
+    );
+    if (savedUserLogin) {
+      return AppRoutes.firbasebottomNavBarScreen;
+    } else if (savedOnBorading) {
+      return AppRoutes.firbaseLoginScreen;
     } else {
       return AppRoutes.splashScreen;
     }

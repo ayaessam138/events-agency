@@ -43,7 +43,7 @@ class AppCacheImage extends StatelessWidget {
           shape: isNotCircle ? BoxShape.rectangle : BoxShape.circle,
           image: DecorationImage(
             image: AssetImage(
-              defaultImage ?? AppImages.placholder,
+              defaultImage ??  "assets/images/event.png",
             ),
             fit: placeholderFit ?? BoxFit.cover,
           ),
@@ -61,7 +61,7 @@ class AppCacheImage extends StatelessWidget {
               shape: isNotCircle ? BoxShape.rectangle : BoxShape.circle,
               image: DecorationImage(
                 image: AssetImage(
-                  defaultImage ?? AppImages.placholder,
+                  defaultImage ?? "assets/images/event.png",
                 ),
                 fit: placeholderFit ?? BoxFit.cover,
               ),

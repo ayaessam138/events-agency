@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "492221240705",
+    "project_id": "events-agency-18c18",
+    "storage_bucket": "events-agency-18c18.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:492221240705:android:4eb83114f5f7faa3acc480",
+        "android_client_info": {
+          "package_name": "com.example.bookingapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2CTizSH_h6W0TN9YGea3eUa1rN0GyALs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
