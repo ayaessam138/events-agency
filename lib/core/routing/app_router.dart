@@ -1,10 +1,10 @@
+import 'package:bookingapp/api/login/persentation/screens/login_screen.dart';
 import 'package:bookingapp/core/helpers/dependency_injection.dart';
 import 'package:bookingapp/core/helpers/functions.dart';
 import 'package:bookingapp/core/routing/app_routes.dart';
 import 'package:bookingapp/api/bottom_nav_bar/persentation/screens/bottom_nav_bar_screen.dart';
 import 'package:bookingapp/api/events/persentation/screens/event_details.dart';
 import 'package:bookingapp/api/events/persentation/screens/events_screen.dart';
-import 'package:bookingapp/api/login/persentation/screens/login_screen.dart';
 import 'package:bookingapp/api/onboading/persentations/screens/on_borading_screen.dart';
 import 'package:bookingapp/api/organizer/persenation/screens/organizer_screen.dart';
 import 'package:bookingapp/api/otp/persentation/screens/otp_screen.dart';
@@ -153,6 +153,7 @@ class AppRouter {
               ),
             ),
       ),
+      
     ],
   );
 }

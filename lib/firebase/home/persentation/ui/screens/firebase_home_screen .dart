@@ -11,8 +11,6 @@ import 'package:bookingapp/core/theming/styles.dart';
 import 'package:bookingapp/api/home/persentation/widgets/drawer_widget.dart';
 import 'package:bookingapp/api/home/persentation/widgets/filter_contanier.dart';
 import 'package:bookingapp/api/home/persentation/widgets/home_appbar.dart';
-import 'package:bookingapp/firebase/admin/dashboard_firebase_service.dart';
-
 import 'package:bookingapp/firebase/events/data/model/firebase_events_model.dart';
 import 'package:bookingapp/firebase/events/persentation/cubit/firebase_events_cubit.dart';
 
@@ -37,107 +35,7 @@ class _FirebaseHomeScreenState extends State<FirebaseHomeScreen> {
       child: Builder(
         builder: (context) {
           return Scaffold(
-            floatingActionButton: FloatingActionButton(
-              onPressed: () async {
-                final service = FirebaseDashBoardService();
-
-                final organizer = FirebaseOrganizerModel(
-                  id: "",
-                  name: "Tech Summit Team",
-                  picture: "https://example.com/org.png",
-                  numberOfFollowing: 50,
-                  numberOfFollowers: 200,
-                  about: "Organizer for tech and startup events",
-                  events: [],
-                  reviews: [],
-                );
-
-          
-                final organizerId = await service.addOrganizer(organizer);
-
-                final event = FirebaseEventsModel(
-                  eventId: "",
-                  picture: "https://example.com/event.png",
-                  date: "2025-10-01",
-                  title: "Tech Summit 2025",
-                  address: "Cairo, Egypt",
-                  numberOfGoing: 150,
-                  organizer: FirebaseOrganizerModel(
-                    id: organizerId,
-                    name: organizer.name,
-                    picture: organizer.picture,
-                  ),
-                  aboutEvent:
-                      "A conference for startups and technology enthusiasts",
-                  eventPrice: "Free",
-                  addressTitle: "Cairo International Convention Center",
-                );
-
-                
-                final eventId = await service.addEvent(event);
-
-                final review = FirebaseReviewsModel(
-                  reviewId: "",
-                  reviewerPicture: "https://example.com/user.png",
-                  reviewerName: "Aya Essam",
-                  rate: 5,
-                  review: "Amazing event! Very inspiring.",
-                  reviewDate: DateTime.now().toIso8601String(),
-                );
-
-                await service.addReview(
-                  review: review,
-                  eventId: eventId,
-                  organizerId: organizerId,
-                );
-
-                // final newEvent = FirebaseEventsModel(
-                //   eventId: 1,
-                //   picture: "https://example.com/event.jpg",
-                //   date: "2025-09-10",
-                //   title: "Tech Conference",
-                //   address: "Cairo, Egypt",
-                //   numberOfGoing: 50,
-                //   organizer: FirebaseOrganizerModel(
-                //     id: 1,
-                //     name: "Organizer Name",
-                //     picture: "https://example.com/organizer.jpg",
-                //   ),
-                // );
-
-                // await eventService.addEvent(newEvent);
-
-                // //orgaizer
-
-                // final newOrganizer = FirebaseOrganizerModel(
-                //   id: 1,
-                //   name: "Organizer Name",
-                //   picture: "https://example.com/organizer.jpg",
-                //   about: "We organize tech events worldwide",
-                //   numberOfFollowers: 1200,
-                //   numberOfFollowing: 150,
-                // );
-
-                // await eventService.addOrganizer(newOrganizer);
-                // //review
-
-                // final newReview = FirebaseReviewsModel(
-                //   reviewerName: "Aya Essam",
-                //   reviewerPicture: "https://example.com/user.jpg",
-                //   rate: 5,
-                //   review: "Great event, very organized!",
-                //   reviewDate: DateTime.now().toIso8601String(),
-                // );
-
-                // await eventService.addReview(
-                //   review: newReview,
-                //   eventId:
-                //       "eventDocIdFromFirestore", // هنا تحط الـ id بتاع الـ event
-                //   organizerId:
-                //       "organizerDocIdFromFirestore", // هنا تحط الـ id بتاع الـ organizer
-                // );
-              },
-            ),
+           
 
             key: _scaffoldKey,
             drawer: DrawerWidget(),
